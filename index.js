@@ -12,7 +12,9 @@ const app = express();
 
 app.use(express.urlencoded())
 app.use(express.json())
-
+app.get('/health',(req,res)=>{
+    return res.send("OK...")
+})
 
 initDatabase().then((db)=>{
 

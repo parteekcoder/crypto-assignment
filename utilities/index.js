@@ -1,9 +1,6 @@
 import axios from "axios"
 import { apiURL } from "../config/index.js"
 
-
-
-
 export async function getAllCurrencies() {
     const results = await axios.get(apiURL+'/coins/list')
     return results.data
