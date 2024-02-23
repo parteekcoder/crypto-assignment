@@ -8,7 +8,7 @@ export default function initCronJobs(db) {
         try {
             const currencies = await getAllCurrencies()
             const collection = db.collection('currency')
-            collection.createIndex({ symbol: 1 }, { unique: true })
+            collection.createIndex({ symbol: 1, id: 1 }, { unique: true })
             const bulkOps = currencies.map(document => ({
                 updateOne: {
                   filter: { symbol: document.symbol },
@@ -22,5 +22,5 @@ export default function initCronJobs(db) {
             logger(e);
         }
     }
-    cron.schedule('* * * * *', fetchCurrencies)
+    cron.schedule('0 * * * *', fetchCurrencies)
 }
